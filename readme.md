@@ -152,7 +152,10 @@ needs a word.
 | `components/shell/` | `PhoneFrame` `StatusBar` `TabBar` |
 | `components/grove/` | `Tree` `Grove` `BreathRing` `ShareArt` |
 | `ui_kits/star_forge/` | **The direction** — eleven screens. Star per day, colour = project, nova = perfect week |
+| `ios/` | The POC app — one real block session. See `ios/README.md`; the Swift is an uncompiled draft |
+| `tools/gen-tokens.mjs` | Generates `ios/Shared/Generated/DesignTokens.swift` from `tokens/*.css` |
 | `docs/tech-stack.md` | iOS stack decision, and the three Screen Time constraints that shape the product |
+| `docs/entitlement-request.md` | Family Controls justification for Apple, plus App Store review notes |
 | `github.md` | Source-repo association and sync receipt |
 | `SKILL.md` | Agent-skill entry point |
 

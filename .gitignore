@@ -1,3 +1,15 @@
 .claude/settings.local.json
 .DS_Store
 node_modules/
+
+# Xcode — the project is generated from ios/project.yml by XcodeGen.
+# Never commit it; regenerate instead.
+ios/*.xcodeproj/
+ios/*.xcworkspace/
+ios/build/
+DerivedData/
+xcuserdata/
+*.xcuserstate
+
+# Shared/Generated/DesignTokens.swift IS committed on purpose: it keeps the Mac
+# from needing Node just to build. Regenerate with `node tools/gen-tokens.mjs`.
