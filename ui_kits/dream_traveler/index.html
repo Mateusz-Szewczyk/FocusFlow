@@ -1,0 +1,97 @@
+<!-- @dsCard group="Dream Traveler" viewport="1000x820" name="Dream Traveler iOS" subtitle="Twelve screens: sleep, walk, route, diary" -->
+<!-- @startingPoint section="Dream Traveler" subtitle="Dream Traveler prototype — twelve screens" viewport="1000x900" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dream Traveler — FocusFlow</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  /* ── pastel watercolour direction. Scoped to this kit so the grove tokens are
+       untouched; if the direction is approved these move into tokens/colors.css. */
+  [data-dt-kit] {
+    --dt-paper:#FBF8F4; --dt-paper-raised:#FFFDFA; --dt-line:#E4DED4;
+    --dt-ink:#3A3A44; --dt-ink-2:#7C7B87;
+    --dt-sky:#EAF0F4; --dt-dusk:#C3CBE2; --dt-slate:#AFB6C6; --dt-mist:#DCE3E6;
+    --dt-mint:#C4D8CB; --dt-sand:#EBD9BC; --dt-clay:#E5C3B7; --dt-gold:#D9A85C;
+    --dt-coat:#E3B784; --dt-coat-cream:#F0E0C8; --dt-coat-honey:#E3B784;
+    --dt-coat-ash:#C8CBD0; --dt-coat-ink:#8E8A92;
+
+    /* the system components inherit the pastel palette instead of jade/ink */
+    --paper:var(--dt-paper); --paper-raised:var(--dt-paper-raised);
+    --hairline:var(--dt-line); --ink-1:var(--dt-ink); --ink-2:var(--dt-ink-2);
+    --ink-3:#A6A4AE; --accent:#8496B8; --accent-on:#FBF8F4;
+    --leaf:var(--dt-mint); --amber:#C08A5E;
+  }
+  [data-dt-mood="dusk"] {
+    --dt-paper:#F1F2F7; --dt-paper-raised:#F8F8FC; --dt-ink:#333747; --dt-ink-2:#6E7385;
+    --paper:var(--dt-paper); --ink-1:var(--dt-ink); --ink-2:var(--dt-ink-2);
+  }
+  [data-dt-mood="alert"] {
+    --dt-paper:#FBF4F0; --dt-paper-raised:#FFFAF7;
+    --paper:var(--dt-paper);
+  }
+
+  @keyframes dt-breathe { 0%,100%{transform:scale(1)} 50%{transform:scale(1.028)} }
+  @keyframes dt-zzz { 0%{opacity:0;transform:translate(0,6px)} 30%{opacity:.6} 100%{opacity:0;transform:translate(10px,-16px)} }
+  @keyframes dt-step { 0%,100%{transform:rotate(-9deg)} 50%{transform:rotate(9deg)} }
+  @keyframes dt-caret { 0%,49%{opacity:1} 50%,100%{opacity:0} }
+  .dt-breathe{transform-origin:50% 80%;animation:dt-breathe 5.5s ease-in-out infinite}
+  .dt-zzz{animation:dt-zzz 3.6s ease-in-out infinite}
+  .dt-leg{transform-origin:top center;animation:dt-step 1.5s ease-in-out infinite}
+  .dt-leg-1{animation-delay:.75s}
+  .dt-caret{animation:dt-caret 1.1s step-end infinite;color:var(--dt-ink-2)}
+  @media (prefers-reduced-motion: reduce) {
+    .dt-breathe,.dt-zzz,.dt-leg,.dt-caret{animation:none}
+  }
+
+  /* ── page around the phone ── */
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--room);color:var(--ink-1);font-family:var(--font-body);
+       -webkit-font-smoothing:antialiased;padding:44px 16px 80px}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{color:var(--ink-1)}
+  .head{max-width:640px;margin:0 auto 26px;text-align:center}
+  .mark{font-family:var(--font-mono);font-size:10px;letter-spacing:.26em;text-transform:uppercase;
+        color:var(--ink-2);margin-bottom:18px}
+  .head h1{font-family:var(--font-display);font-weight:400;font-size:clamp(29px,6.6vw,42px);
+           line-height:1.14;letter-spacing:-.012em;margin:0 0 14px}
+  .head p{color:var(--ink-2);font-size:14.5px;line-height:1.7;margin:0 auto;max-width:50ch}
+  .chips{display:flex;gap:7px;overflow-x:auto;padding:2px 4px 12px;scrollbar-width:none;
+         max-width:880px;margin:0 auto 24px}
+  .chips::-webkit-scrollbar{display:none}
+  .stage{display:flex;flex-direction:column;align-items:center;gap:22px}
+  .cap{max-width:min(420px,94vw);text-align:center;color:var(--ink-2);font-size:13px;line-height:1.7}
+  .cap b{color:var(--ink-1);font-weight:600}
+  .foot{max-width:640px;margin:52px auto 0;text-align:center;color:var(--ink-2);font-size:11px;
+        line-height:1.9;font-family:var(--font-mono);letter-spacing:.1em;text-transform:uppercase}
+  .ff-scroll{scrollbar-width:none}
+  .ff-scroll::-webkit-scrollbar{display:none}
+</style>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+</head>
+<body>
+
+<header class="head">
+  <div class="mark">FocusFlow · Dream Traveler</div>
+  <h1>She sleeps while you work.<br>You wake up somewhere new.</h1>
+  <p>Same product: the assistant writes the day over MCP, you approve it, the session locks
+    the phone. What you earn is not points or trees — it is ground covered, drawn as a route
+    your pet walks while you rest.</p>
+</header>
+
+<div id="root"></div>
+
+<p class="foot">Distance = time kept · Landscape = total distance · Postcards = places reached<br>
+No wilting, no death — a broken session only makes her stir</p>
+
+<script>
+  dsLoadScripts(['art.jsx', 'screens.jsx', 'app.jsx']);
+</script>
+</body>
+</html>

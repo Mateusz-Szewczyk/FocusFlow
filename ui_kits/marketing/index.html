@@ -1,0 +1,32 @@
+<!-- @dsCard group="Marketing" viewport="1100x900" name="FocusFlow site" subtitle="Landing page built only from system parts" -->
+<!-- @startingPoint section="Marketing" subtitle="FocusFlow landing page" viewport="1100x900" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FocusFlow — a day becomes a tree</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink-1);font-family:var(--font-body);
+       -webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{color:var(--ink-1)}
+  @media (max-width:900px){
+    section > div[style*="grid"]{grid-template-columns:1fr !important}
+  }
+</style>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script>
+  dsLoadScripts(['page.jsx']);
+</script>
+</body>
+</html>

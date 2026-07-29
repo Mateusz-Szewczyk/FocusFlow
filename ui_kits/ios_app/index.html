@@ -1,0 +1,73 @@
+<!-- @dsCard group="iOS app" viewport="1000x760" name="FocusFlow iOS" subtitle="Eleven screens: plan, protect, grow, share" -->
+<!-- @startingPoint section="iOS app" subtitle="FocusFlow prototype — eleven screens" viewport="1000x900" -->
+<!DOCTYPE html>
+<html lang="en" data-page="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FocusFlow — iOS UI kit</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--room);color:var(--ink-1);font-family:var(--font-body);
+       -webkit-font-smoothing:antialiased;padding:44px 16px 80px;
+       transition:background var(--dur-theme),color var(--dur-theme)}
+  html[data-page="dark"] body{--room:#0C100F;--room-hairline:#212927}
+  .head{max-width:600px;margin:0 auto 30px;text-align:center}
+  .mark{font-family:var(--font-mono);font-size:10px;letter-spacing:.26em;text-transform:uppercase;
+        color:var(--ink-2);margin-bottom:20px}
+  .head h1{font-family:var(--font-display);font-weight:400;font-size:clamp(29px,6.6vw,42px);
+           line-height:1.14;letter-spacing:-.012em;margin:0 0 16px}
+  .head p{color:var(--ink-2);font-size:14.5px;line-height:1.7;margin:0 auto;max-width:46ch}
+  .controls{display:flex;justify-content:center;margin:0 auto 22px}
+  .toggle{border:1px solid var(--room-hairline);background:transparent;color:var(--ink-2);
+    font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+    padding:9px 14px;border-radius:999px;cursor:pointer;transition:.25s}
+  .toggle:hover{color:var(--ink-1)}
+  .chips{display:flex;gap:7px;overflow-x:auto;padding:2px 4px 12px;scrollbar-width:none;
+         max-width:860px;margin:0 auto 24px}
+  .chips::-webkit-scrollbar{display:none}
+  .stage{display:flex;flex-direction:column;align-items:center;gap:22px}
+  .cap{max-width:min(384px,94vw);text-align:center;color:var(--ink-2);font-size:13px;line-height:1.7}
+  .cap b{color:var(--ink-1);font-weight:600}
+  .foot{max-width:600px;margin:56px auto 0;text-align:center;color:var(--ink-2);font-size:11px;
+        line-height:1.9;font-family:var(--font-mono);letter-spacing:.1em;text-transform:uppercase}
+  .ff-scroll{scrollbar-width:none}
+  .ff-scroll::-webkit-scrollbar{display:none}
+</style>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script>
+  /* JSX below is compiled with the classic runtime so it needs no module imports */
+  Babel.registerPreset('ff', { presets: [[Babel.availablePresets.react, { runtime: 'classic' }]] });
+</script>
+<script src="../../_ds_bundle.js"></script>
+<script>
+  /* resolve the compiled design-system namespace whatever it is called */
+  window.FF = window.DS || {};
+</script>
+</head>
+<body>
+
+<header class="head">
+  <div class="mark">FocusFlow · iOS UI kit</div>
+  <h1>A day becomes a tree.<br>A year becomes a forest.</h1>
+  <p>Trees grow in Fibonacci steps: one block sprouts it, two branches it, then three, five, eight.
+     Each stage costs the two before it, so early wins feel large and grinding pays less and less.</p>
+</header>
+
+<div class="controls"><button class="toggle" id="theme">◑ Dark</button></div>
+
+<div id="root"></div>
+
+<p class="foot">Height = blocks kept · Leaves = work finished · Colour = kept ÷ planned<br>
+Growth 1·1·2·3·5·8 — nothing dies, rest is planted</p>
+
+<script>
+  dsLoadScripts(['shell.jsx', 'focus.jsx', 'grove.jsx', 'app.jsx']);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!-- @dsCard group="Brand" viewport="700x210" name="Growth stages" subtitle="1 · 1 · 2 · 3 · 5 · 8 — each stage costs the two before it" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0}
+  body{background:var(--paper);color:var(--ink-1);font-family:var(--font-body);padding:20px 24px}
+  .mono{font-family:var(--font-mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3)}
+</style>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="../_ds_bundle.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+  function ds(names){
+    for (const k of Object.keys(window)) {
+      const v = window[k];
+      if (v && typeof v === 'object' && names.every(n => typeof v[n] === 'function')) return v;
+    }
+    return {};
+  }
+  const { Tree } = ds(['Tree']);
+  const stages = [[-1,'rest'],[0,'1'],[1,'1'],[2,'2'],[3,'3'],[4,'5'],[5,'8']];
+  ReactDOM.createRoot(document.getElementById('root')).render(
+    <div style={{display:'flex',alignItems:'flex-end',gap:'10px'}}>
+      {stages.map(([s,l],i)=>(
+        <div key={i} style={{flex:1,textAlign:'center'}}>
+          <Tree stage={s} green={s<2?1:s<4?2:3} size={1.0} seed={s*13+3} height={120} width={80} animate={false}/>
+          <div className="mono" style={{marginTop:4}}>{l}</div>
+        </div>))}
+    </div>
+</script>
+</body>
+</html>

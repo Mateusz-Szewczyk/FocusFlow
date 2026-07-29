@@ -1,0 +1,57 @@
+/* Weather, not feedback. Nothing pops, bounces or celebrates. */
+
+:root {
+  --ease-breath: cubic-bezier(.45, 0, .55, 1);
+  --ease-arrive: cubic-bezier(.2, .7, .25, 1);
+  --ease-grow: cubic-bezier(.3, .55, .35, 1);
+  --ease-sway: cubic-bezier(.42, 0, .58, 1);
+
+  --dur-theme: .5s;         /* light <-> dark cross-fade */
+  --dur-arrive: .9s;        /* a screen fading up 10px */
+  --dur-trunk: .95s;        /* first stem drawing itself */
+  --dur-breath: 15s;        /* focus ring, one full cycle */
+  --dur-sway-min: 3s;
+  --dur-sway-max: 7s;
+  --sway-amplitude-min: 2deg;
+  --sway-amplitude-max: 5.5deg;
+  --arrive-rise: 10px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-arrive: 0s; --dur-trunk: 0s; }
+}
+
+/* ---- shared keyframes + motion utilities ----
+   Shipped with the tokens so components stay self-contained. ---- */
+
+@keyframes ff-draw   { to { stroke-dashoffset: 0 } }
+@keyframes ff-sway   { from { transform: rotate(calc(var(--amp, 1deg) * -.85)) }
+                       to   { transform: rotate(var(--amp, 1deg)) } }
+@keyframes ff-arrive { from { opacity: 0; transform: translateY(10px) } to { opacity: 1; transform: none } }
+@keyframes ff-breath { 0%, 100% { transform: scale(.68); opacity: .32 } 50% { transform: scale(1); opacity: .8 } }
+@keyframes ff-drift  { from { transform: translate(0, 0) } to { transform: translate(-7px, 4px) } }
+@keyframes ff-fall {
+  0%   { opacity: 0; transform: translate3d(0, 0, 0) rotate(0) }
+  8%   { opacity: .55 }
+  50%  { transform: translate3d(26px, 46vh, 0) rotate(140deg) }
+  88%  { opacity: .35 }
+  100% { opacity: 0; transform: translate3d(-14px, 92vh, 0) rotate(310deg) }
+}
+@keyframes ff-drain { to { width: 0 } }
+
+.ff-grow { stroke-dasharray: 1; stroke-dashoffset: 1;
+           animation-name: ff-draw; animation-fill-mode: forwards;
+           animation-timing-function: var(--ease-grow) }
+.ff-sway { transform-box: fill-box; transform-origin: 50% 100%; will-change: transform;
+           animation-name: ff-sway; animation-iteration-count: infinite;
+           animation-direction: alternate; animation-timing-function: var(--ease-sway) }
+.ff-arrive { animation: ff-arrive var(--dur-arrive) var(--ease-arrive) both }
+.ff-breath { transform-origin: center;
+             animation: ff-breath var(--dur-breath) var(--ease-breath) infinite }
+.ff-drift  { animation: ff-drift 90s ease-in-out infinite alternate }
+.ff-fall   { animation: ff-fall 22s var(--ease-breath) infinite }
+
+@media (prefers-reduced-motion: reduce) {
+  .ff-grow { stroke-dashoffset: 0; animation: none }
+  .ff-sway, .ff-arrive, .ff-breath, .ff-drift, .ff-fall { animation: none }
+}

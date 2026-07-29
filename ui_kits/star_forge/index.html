@@ -1,0 +1,119 @@
+<!-- @dsCard group="Star Forge" viewport="1000x820" name="Star Forge iOS" subtitle="Eleven screens: forge, sky, constellations, atlas" -->
+<!-- @startingPoint section="Star Forge" subtitle="Star Forge prototype — eleven screens" viewport="1000x900" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Star Forge — a day is a star</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  /* ── night direction, scoped to the kit so the other kits are untouched ── */
+  [data-sf-kit] {
+    --sf-night:#0B0E20; --sf-night-2:#131739; --sf-card:rgba(30,36,74,.62);
+    --sf-line:rgba(190,203,255,.16); --sf-line-2:rgba(190,203,255,.34);
+    --sf-ink:#EEF1FF; --sf-ink-2:#A7AFD8; --sf-ink-3:#7C84B4;
+    --sf-glow:#CBD8FF; --sf-violet:#6E5BC0; --sf-indigo:#2A2F6B;
+
+    /* the shared components inherit the night palette */
+    --paper:var(--sf-night); --paper-raised:var(--sf-night-2);
+    --hairline:var(--sf-line); --ink-1:var(--sf-ink); --ink-2:var(--sf-ink-2);
+    --ink-3:var(--sf-ink-3); --accent:#8C9BE8; --accent-on:#0B0E20;
+    --leaf:#8FD0BE; --amber:#E0B36A;
+  }
+
+  /* a soft watercolour nebula behind every screen, painted with gradients only */
+  .sf-veil {
+    position:absolute; inset:0; pointer-events:none;
+    background:
+      radial-gradient(120% 70% at 18% 8%, rgba(110,91,192,.34), transparent 60%),
+      radial-gradient(90% 60% at 88% 26%, rgba(60,96,190,.26), transparent 62%),
+      radial-gradient(120% 80% at 50% 108%, rgba(20,24,58,.9), transparent 60%);
+    filter:blur(2px);
+  }
+
+  /* ── motion: everything slow, nothing that demands attention ── */
+  @keyframes sf-pulse { 0%,100%{transform:scale(1);opacity:.94} 50%{transform:scale(1.05);opacity:1} }
+  @keyframes sf-drift {
+    0%   { transform:translate(0,0); opacity:0 }
+    12%  { opacity:.9 }
+    82%  { opacity:.55 }
+    100% { transform:translate(var(--sf-dx),var(--sf-dy)) scale(.4); opacity:0 }
+  }
+  @keyframes sf-twinkle { 0%,100%{opacity:.18} 50%{opacity:.75} }
+  @keyframes sf-spin { to { transform:rotate(360deg) } }
+  @keyframes sf-draw { from { stroke-dasharray:0 200 } to { stroke-dasharray:200 0 } }
+  @keyframes sf-zoom { from { transform:scale(2.1); opacity:.2 } to { transform:scale(1); opacity:1 } }
+  @keyframes sf-fill { from { width:22% } to { width:76% } }
+  @keyframes sf-shock { 0%{transform:scale(1);opacity:.55} 100%{transform:scale(3.1);opacity:0} }
+  @keyframes sf-flare { 0%{transform:scale(.4);opacity:0} 55%{opacity:1} 100%{transform:scale(1);opacity:1} }
+  @keyframes sf-tilt { 0%,100%{transform:rotateX(0)} 50%{transform:rotateX(8deg)} }
+
+  .sf-pulse{transform-box:fill-box;transform-origin:center;animation:sf-pulse 4.6s ease-in-out infinite}
+  .sf-mote{animation-name:sf-drift;animation-timing-function:cubic-bezier(.4,0,.7,1);animation-iteration-count:infinite;opacity:0}
+  .sf-twinkle{animation:sf-twinkle 5.5s ease-in-out infinite}
+  .sf-swirl{animation:sf-spin 90s linear infinite}
+  .sf-spin-slow{animation:sf-spin 220s linear infinite}
+  .sf-draw{animation:sf-draw 1.6s ease-out both}
+  .sf-zoom{animation:sf-zoom 2.6s cubic-bezier(.2,.7,.2,1) both}
+  .sf-fill{animation:sf-fill 6s ease-in-out infinite alternate}
+  .sf-shock{transform-box:fill-box;transform-origin:center;animation:sf-shock 4.8s ease-out infinite}
+  .sf-flare{animation:sf-flare 1.8s cubic-bezier(.16,.84,.24,1) both}
+  .sf-tilt-slow{animation:sf-spin 140s linear infinite}
+  /* focus breaks → dust freezes mid-flight and the core stops breathing */
+  .sf-stalled .sf-mote,.sf-stalled .sf-pulse,.sf-stalled .sf-swirl{animation-play-state:paused}
+  @media (prefers-reduced-motion: reduce){
+    .sf-pulse,.sf-mote,.sf-twinkle,.sf-swirl,.sf-spin-slow,.sf-draw,.sf-zoom,.sf-fill,
+    .sf-shock,.sf-flare,.sf-tilt-slow{animation:none}
+    .sf-mote{opacity:.5}
+  }
+
+  /* ── page around the phone ── */
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:#EDEDE7;color:#171E1B;font-family:var(--font-body);
+       -webkit-font-smoothing:antialiased;padding:44px 16px 80px}
+  a{color:#4C5AA8;text-decoration:none}
+  a:hover{color:#171E1B}
+  .head{max-width:640px;margin:0 auto 26px;text-align:center}
+  .mark{font-family:var(--font-mono);font-size:10px;letter-spacing:.26em;text-transform:uppercase;
+        color:#586360;margin-bottom:18px}
+  .head h1{font-family:var(--font-display);font-weight:400;font-size:clamp(29px,6.6vw,42px);
+           line-height:1.14;letter-spacing:-.012em;margin:0 0 14px}
+  .head p{color:#586360;font-size:14.5px;line-height:1.7;margin:0 auto;max-width:52ch}
+  .chips{display:flex;gap:7px;overflow-x:auto;padding:2px 4px 12px;scrollbar-width:none;
+         max-width:880px;margin:0 auto 24px}
+  .chips::-webkit-scrollbar{display:none}
+  .stage{display:flex;flex-direction:column;align-items:center;gap:22px}
+  .cap{max-width:min(430px,94vw);text-align:center;color:#586360;font-size:13px;line-height:1.7}
+  .cap b{color:#171E1B;font-weight:600}
+  .foot{max-width:640px;margin:52px auto 0;text-align:center;color:#586360;font-size:11px;
+        line-height:1.9;font-family:var(--font-mono);letter-spacing:.1em;text-transform:uppercase}
+  .ff-scroll{scrollbar-width:none}
+  .ff-scroll::-webkit-scrollbar{display:none}
+</style>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+</head>
+<body>
+
+<header class="head">
+  <div class="mark">Star Forge · UI kit</div>
+  <h1>A day is a star.<br>A year is a galaxy you made.</h1>
+  <p>Size is tasks finished, light is the plan kept, colour is the project. Rare forms are
+    earned: a ring for a day where every block held, a comet for a comeback, and a nova for
+    seven kept nights in a row.</p>
+</header>
+
+<div id="root"></div>
+
+<p class="foot">Size = tasks · Light = plan kept · Colour = project · Ring = perfect day · Nova = perfect week<br>
+The assistant plans over MCP · you approve · the session protects the time</p>
+
+<script>
+  dsLoadScripts(['sky.jsx', 'screens.jsx', 'app.jsx']);
+</script>
+</body>
+</html>

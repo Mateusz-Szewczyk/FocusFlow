@@ -1,0 +1,70 @@
+/* FocusFlow colour system.
+   Light is the default. Dark is applied with [data-theme="dark"] on any ancestor
+   (html, a phone frame, or a single screen — the night session screens run dark
+   inside an otherwise light shell). */
+
+:root {
+  /* --- base ink --- */
+  --ink-1: #171E1B;
+  --ink-2: #586360;
+  --ink-3: #98A29D;
+
+  /* --- base surfaces --- */
+  --paper: #F5F4EF;
+  --paper-raised: #FBFAF6;
+  --hairline: #E1DFD5;
+
+  /* the page the phone sits on (prototype / marketing shell) */
+  --room: #E9E8E2;
+  --room-hairline: #DDDBD1;
+  --sheet: #F6F5F0;
+
+  /* --- brand hues --- */
+  --jade: #3D6D5B;   /* the single accent, once per screen */
+  --leaf: #7FA694;   /* foliage only */
+  --amber: #A5702F;  /* warnings and care, never decoration */
+
+  /* --- sky --- */
+  --sky: #EFEFE8;
+  --sky-top: #E9EAE1;
+  --sky-bottom: #F6F5EF;
+  --sun-disc: #E1E4D8;
+
+  /* --- semantic aliases (use these in product code) --- */
+  --text-primary: var(--ink-1);
+  --text-secondary: var(--ink-2);
+  --text-tertiary: var(--ink-3);
+  --surface-page: var(--paper);
+  --surface-raised: var(--paper-raised);
+  --border-hairline: var(--hairline);
+  --accent: var(--jade);
+  --accent-on: #F6F9F7;      /* text sitting on a jade fill */
+  --foliage: var(--leaf);
+  --caution: var(--amber);
+  --focus-ring: var(--jade);
+}
+
+[data-theme="dark"] {
+  --ink-1: #E9EDEB;
+  --ink-2: #9AA7A2;
+  --ink-3: #6B7974;
+
+  --paper: #111615;
+  --paper-raised: #181E1D;
+  --hairline: #232B29;
+
+  --room: #0C100F;
+  --room-hairline: #212927;
+  --sheet: #111615;
+
+  --jade: #86B49E;
+  --leaf: #5E8272;
+  --amber: #C08F4E;
+
+  --sky: #0D1211;
+  --sky-top: #0B100F;
+  --sky-bottom: #141A18;
+  --sun-disc: #1B2321;
+
+  --accent-on: #0F1413;      /* dark ink on a pale jade fill */
+}

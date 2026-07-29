@@ -1,0 +1,39 @@
+/* Display is a warm bookish serif; body is the system sans;
+   every number, duration and label is monospace, uppercase and widely tracked. */
+
+:root {
+  --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  /* display — short sentences that end in a full stop */
+  --display-xl: 42px;   /* marketing headline / hero */
+  --display-l: 32px;    /* screen headline, .s1 */
+  --display-m: 24px;    /* section headline, .s2 */
+  --display-s: 19px;    /* pull quote inside a screen */
+  --display-weight: 400;
+  --display-tracking: -0.012em;
+  --display-leading: 1.16;
+
+  /* body */
+  --body-lg: 15px;
+  --body: 13.5px;
+  --body-sm: 13px;
+  --body-xs: 12px;
+  --body-leading: 1.8;
+
+  /* mono label — the only uppercase in the system */
+  --label: 9.5px;
+  --label-lg: 10.5px;
+  --label-tracking: 0.26em;
+  --label-tracking-tight: 0.16em;
+
+  /* numerals: monospace, tabular, never the serif */
+  --numeral-l: 60px;    /* the unlock time on the block screen */
+  --numeral-m: 33px;    /* session countdown */
+  --numeral-s: 15px;
+
+  --text-display: var(--font-display);
+  --text-body: var(--font-body);
+  --text-mono: var(--font-mono);
+}

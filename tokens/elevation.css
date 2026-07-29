@@ -1,0 +1,10 @@
+/* There is almost no elevation in the product: the only shadows in the system
+   are cast by the physical device and by a printed sheet. Inside a screen,
+   separation is always a hairline. */
+
+:root {
+  --shadow-device: 0 44px 90px -38px rgba(8, 12, 11, .55);
+  --shadow-sheet: 0 34px 74px -40px rgba(8, 12, 11, .5);
+  --shadow-inset-device: 0 24px 44px -30px rgba(8, 12, 11, .7);
+  --shadow-none: none;
+}

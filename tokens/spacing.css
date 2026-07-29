@@ -1,0 +1,17 @@
+/* Hairlines and whitespace instead of cards and shadows. */
+
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 26px;
+  --space-7: 30px;
+  --space-8: 44px;
+
+  --screen-gutter: 30px;   /* side padding on a 390pt screen */
+  --rule-gap: 30px;        /* whitespace either side of a hairline rule */
+  --row-padding: 15px;     /* vertical padding of a key/value row */
+  --stack-gap: 12px;
+}
