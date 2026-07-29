@@ -152,6 +152,7 @@ needs a word.
 | `components/shell/` | `PhoneFrame` `StatusBar` `TabBar` |
 | `components/grove/` | `Tree` `Grove` `BreathRing` `ShareArt` |
 | `ui_kits/star_forge/` | **The direction** — eleven screens. Star per day, colour = project, nova = perfect week |
+| `docs/tech-stack.md` | iOS stack decision, and the three Screen Time constraints that shape the product |
 | `github.md` | Source-repo association and sync receipt |
 | `SKILL.md` | Agent-skill entry point |
 
