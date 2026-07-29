@@ -64,14 +64,18 @@ Finished early · Not now · Stay on Free*. Never *Get started!*, never *Crush y
 
 ## VISUAL FOUNDATIONS
 
-**Colour.** Warm near-black ink on warm off-white paper. Light: ink `#171E1B`, secondary
-`#586360`, tertiary `#98A29D`, paper `#F5F4EF`, raised `#FBFAF6`, hairline `#E1DFD5`.
-Dark: `#111615` / `#E9EDEB` / `#9AA7A2` / `#6B7974`, hairline `#232B29`.
-**Jade** (`#3D6D5B` light, `#86B49E` dark) is the single accent and appears **once per screen** —
-the primary button, or the running-block dot, never both. **Leaf** (`#7FA694` / `#5E8272`) is
-foliage only and never appears outside a tree. **Amber** (`#A5702F` / `#C08F4E`) marks care and
-conflict, never decoration. Theme is scoped with `[data-theme="dark"]`, so a night session screen
-runs dark inside an otherwise light shell.
+**Colour.** Night is the default: pale blue-white ink on deep indigo. Ink `#EEF1FF`, secondary
+`#A7AFD8`, tertiary `#7C84B4`, paper `#0B0E20`, raised `#131739`, hairline
+`rgba(190,203,255,.16)`. The accent (`--accent-base`, `#8C9BE8`) appears **once per screen** —
+the primary button, or the running-block dot, never both. **Leaf** (`#8FD0BE`) is foliage only
+and never appears outside a tree. **Amber** (`#E0B36A`) marks care and conflict, never
+decoration.
+
+The original grove palette — ink `#171E1B` on paper `#F5F4EF`, jade accent `#3D6D5B` — is
+preserved under `[data-theme="light"]`. It is what the *room* around the device uses (the
+prototype page chrome, print), not the product. Themes nest in both directions: a night screen
+sits inside a light shell via `[data-theme="dark"]`, and a light panel sits inside the night
+default via `[data-theme="light"]`.
 
 **Type.** Display is a warm bookish serif — Iowan Old Style / Palatino Linotype / Palatino /
 Book Antiqua / Georgia — always weight 400, tracking `-0.012em`, leading 1.16. Sizes 42 / 32 / 24 / 19.
@@ -147,11 +151,7 @@ needs a word.
 | `components/data/` | `StatRow` `BulletItem` `Timeline` `Countdown` |
 | `components/shell/` | `PhoneFrame` `StatusBar` `TabBar` |
 | `components/grove/` | `Tree` `Grove` `BreathRing` `ShareArt` |
-| `ui_kits/ios_app/` | The eleven-screen prototype recreation (`index.html`) |
-| `ui_kits/marketing/` | Marketing page — hero, grove band, share art |
-| `ui_kits/growth_concepts/` | Written comparison of the growth-metaphor options |
-| `ui_kits/dream_traveler/` | Exploration: a travelling companion instead of a plant |
-| `ui_kits/star_forge/` | **Current direction** — twelve screens. Star per day, colour = project, nova = perfect week |
+| `ui_kits/star_forge/` | **The direction** — eleven screens. Star per day, colour = project, nova = perfect week |
 | `github.md` | Source-repo association and sync receipt |
 | `SKILL.md` | Agent-skill entry point |
 
@@ -166,6 +166,6 @@ needs a word.
 
 - **Fonts.** Iowan Old Style and the system sans stacks are OS fonts; no binaries were supplied, so there are no `@font-face` rules. On non-Apple platforms display type falls back to Palatino/Georgia, which is close but heavier. If you want the exact specimen everywhere, send the licensed files or pick a Google substitute (Petrona and Source Serif 4 are the nearest matches).
 - **No logo or brand assets** were provided, so `assets/` is empty and the wordmark is typographic.
-- **Three directions are live side by side** — `ios_app` (grove), `dream_traveler`, `star_forge`. Star Forge is the newest and most developed; the others are kept for comparison and should be retired once a direction is chosen, at which point its palette moves into `tokens/colors.css` as the default theme.
-- **Star Forge runs a scoped night palette** declared under `[data-sf-kit]` in its own `index.html`, remapping `--paper`/`--ink-*`/`--accent` so the shared components inherit it. It is deliberately not yet in `tokens/`.
-- Month and year groves use seeded sample data, not a real calendar.
+- **Star Forge is the chosen direction.** The grove, dream-traveler and marketing kits that once sat beside it have been retired; they remain in git history if a comparison is ever needed again.
+- **The night palette is now the default theme**, promoted out of `[data-sf-kit]` into `tokens/colors.css` under `:root`. The light grove palette is preserved under `[data-theme="light"]` and is no longer what a component renders by default.
+- Month and year skies use seeded sample data, not a real calendar.

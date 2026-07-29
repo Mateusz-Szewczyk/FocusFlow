@@ -8,19 +8,8 @@
 <title>Star Forge — a day is a star</title>
 <link rel="stylesheet" href="../../styles.css">
 <style>
-  /* ── night direction, scoped to the kit so the other kits are untouched ── */
-  [data-sf-kit] {
-    --sf-night:#0B0E20; --sf-night-2:#131739; --sf-card:rgba(30,36,74,.62);
-    --sf-line:rgba(190,203,255,.16); --sf-line-2:rgba(190,203,255,.34);
-    --sf-ink:#EEF1FF; --sf-ink-2:#A7AFD8; --sf-ink-3:#7C84B4;
-    --sf-glow:#CBD8FF; --sf-violet:#6E5BC0; --sf-indigo:#2A2F6B;
-
-    /* the shared components inherit the night palette */
-    --paper:var(--sf-night); --paper-raised:var(--sf-night-2);
-    --hairline:var(--sf-line); --ink-1:var(--sf-ink); --ink-2:var(--sf-ink-2);
-    --ink-3:var(--sf-ink-3); --accent:#8C9BE8; --accent-on:#0B0E20;
-    --leaf:#8FD0BE; --amber:#E0B36A;
-  }
+  /* The night palette now ships as the default theme in tokens/colors.css —
+     it is no longer scoped here. [data-sf-kit] remains as the kit's hook. */
 
   /* a soft watercolour nebula behind every screen, painted with gradients only */
   .sf-veil {
@@ -97,7 +86,10 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script src="../../_ds_bundle.js"></script>
 </head>
-<body>
+<!-- The room around the phone is light, so the page chrome (chips, captions) opts
+     into the light theme. The screen itself is night: PhoneFrame renders
+     data-theme="dark" inside, which restates the night palette explicitly. -->
+<body data-theme="light">
 
 <header class="head">
   <div class="mark">Star Forge · UI kit</div>

@@ -8,15 +8,16 @@ date: 2026-07-29T00:00:00Z
 ### Updated in this project
 
 - Associated the FocusFlow repository as this design system's source repo.
-- Repository is currently **empty** — no tree on `main` or `master`, so nothing was imported.
-- Design system (tokens, components, guidelines, four UI kits) was authored in this project and is ready to seed the repo.
+- Seeded the previously-empty repo: tokens, components, guidelines and the UI kits
+  were committed to `main` as the first commit.
+- Chose **Star Forge** as the product direction. The grove, dream-traveler,
+  marketing and growth-concepts kits were retired (recoverable from git history).
+- Promoted the Star Forge night palette from `[data-sf-kit]` into `tokens/colors.css`
+  as the default theme; the light grove palette now lives under `[data-theme="light"]`.
 
 ## Screen map
 
 | Screen / surface | Repo files |
 | --- | --- |
-| `ui_kits/star_forge/index.html` | — (authored here; no upstream source yet) |
-| `ui_kits/ios_app/index.html` | — (authored here; no upstream source yet) |
-| `ui_kits/dream_traveler/index.html` | — (authored here; no upstream source yet) |
-| `ui_kits/marketing/index.html` | — (authored here; no upstream source yet) |
-| `tokens/`, `components/`, `guidelines/` | — (authored here; no upstream source yet) |
+| `ui_kits/star_forge/index.html` | `ui_kits/star_forge/` — the chosen direction |
+| `tokens/`, `components/`, `guidelines/` | same paths on `main` |

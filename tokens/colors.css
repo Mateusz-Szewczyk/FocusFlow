@@ -1,34 +1,60 @@
 /* FocusFlow colour system.
-   Light is the default. Dark is applied with [data-theme="dark"] on any ancestor
-   (html, a phone frame, or a single screen — the night session screens run dark
-   inside an otherwise light shell). */
+
+   Star Forge is the product direction, so night is the default: a day is a star,
+   and the app lives after dark. The palette below was promoted verbatim out of
+   `[data-sf-kit]` in ui_kits/star_forge/index.html.
+
+   The original light "grove" palette is preserved under [data-theme="light"] —
+   nothing authored was thrown away, it is simply no longer the default.
+
+   [data-theme="dark"] restates the night values rather than relying on
+   inheritance. That matters: PhoneFrame renders an inner <div data-theme={theme}>,
+   and custom properties declared on that inner element beat anything inherited
+   from an ancestor. Without an explicit night block here, a dark screen nested
+   inside a light subtree would fall back to a palette Star Forge never intended. */
 
 :root {
+  /* --- Star Forge night: the source values --- */
+  --sf-night:   #0B0E20;
+  --sf-night-2: #131739;
+  --sf-card:    rgba(30, 36, 74, .62);
+  --sf-line:    rgba(190, 203, 255, .16);
+  --sf-line-2:  rgba(190, 203, 255, .34);
+  --sf-ink:     #EEF1FF;
+  --sf-ink-2:   #A7AFD8;
+  --sf-ink-3:   #7C84B4;
+  --sf-glow:    #CBD8FF;
+  --sf-violet:  #6E5BC0;
+  --sf-indigo:  #2A2F6B;
+
   /* --- base ink --- */
-  --ink-1: #171E1B;
-  --ink-2: #586360;
-  --ink-3: #98A29D;
+  --ink-1: var(--sf-ink);
+  --ink-2: var(--sf-ink-2);
+  --ink-3: var(--sf-ink-3);
 
   /* --- base surfaces --- */
-  --paper: #F5F4EF;
-  --paper-raised: #FBFAF6;
-  --hairline: #E1DFD5;
+  --paper: var(--sf-night);
+  --paper-raised: var(--sf-night-2);
+  --hairline: var(--sf-line);
 
-  /* the page the phone sits on (prototype / marketing shell) */
+  /* The page the phone sits on stays light: the device is an object in a room,
+     and the room is not part of the product. */
   --room: #E9E8E2;
   --room-hairline: #DDDBD1;
   --sheet: #F6F5F0;
 
-  /* --- brand hues --- */
-  --jade: #3D6D5B;   /* the single accent, once per screen */
-  --leaf: #7FA694;   /* foliage only */
-  --amber: #A5702F;  /* warnings and care, never decoration */
+  /* --- brand hues, night-tuned ---
+     Named for role, not hue: under the night direction the accent is indigo,
+     so the old `--jade` name was retired rather than left holding a blue. */
+  --accent-base: #8C9BE8;  /* the single accent, once per screen */
+  --leaf: #8FD0BE;         /* foliage only */
+  --amber: #E0B36A;        /* warnings and care, never decoration */
 
   /* --- sky --- */
-  --sky: #EFEFE8;
-  --sky-top: #E9EAE1;
-  --sky-bottom: #F6F5EF;
-  --sun-disc: #E1E4D8;
+  --sky: var(--sf-night);
+  --sky-top: var(--sf-indigo);
+  --sky-bottom: var(--sf-night-2);
+  --sun-disc: var(--sf-glow);
 
   /* --- semantic aliases (use these in product code) --- */
   --text-primary: var(--ink-1);
@@ -37,34 +63,61 @@
   --surface-page: var(--paper);
   --surface-raised: var(--paper-raised);
   --border-hairline: var(--hairline);
-  --accent: var(--jade);
-  --accent-on: #F6F9F7;      /* text sitting on a jade fill */
+  --accent: var(--accent-base);
+  --accent-on: var(--sf-night);   /* ink sitting on an accent fill */
   --foliage: var(--leaf);
   --caution: var(--amber);
-  --focus-ring: var(--jade);
+  --focus-ring: var(--accent-base);
 }
 
+/* Night, restated explicitly — see the note at the top of this file. */
 [data-theme="dark"] {
-  --ink-1: #E9EDEB;
-  --ink-2: #9AA7A2;
-  --ink-3: #6B7974;
+  --ink-1: var(--sf-ink);
+  --ink-2: var(--sf-ink-2);
+  --ink-3: var(--sf-ink-3);
 
-  --paper: #111615;
-  --paper-raised: #181E1D;
-  --hairline: #232B29;
+  --paper: var(--sf-night);
+  --paper-raised: var(--sf-night-2);
+  --hairline: var(--sf-line);
 
-  --room: #0C100F;
-  --room-hairline: #212927;
-  --sheet: #111615;
+  --room: #0A0C18;
+  --room-hairline: var(--sf-line);
+  --sheet: var(--sf-night-2);
 
-  --jade: #86B49E;
-  --leaf: #5E8272;
-  --amber: #C08F4E;
+  --accent-base: #8C9BE8;
+  --leaf: #8FD0BE;
+  --amber: #E0B36A;
 
-  --sky: #0D1211;
-  --sky-top: #0B100F;
-  --sky-bottom: #141A18;
-  --sun-disc: #1B2321;
+  --sky: var(--sf-night);
+  --sky-top: var(--sf-indigo);
+  --sky-bottom: var(--sf-night-2);
+  --sun-disc: var(--sf-glow);
 
-  --accent-on: #0F1413;      /* dark ink on a pale jade fill */
+  --accent-on: var(--sf-night);
+}
+
+/* The original grove palette. Opt in with [data-theme="light"] on any ancestor. */
+[data-theme="light"] {
+  --ink-1: #171E1B;
+  --ink-2: #586360;
+  --ink-3: #98A29D;
+
+  --paper: #F5F4EF;
+  --paper-raised: #FBFAF6;
+  --hairline: #E1DFD5;
+
+  --room: #E9E8E2;
+  --room-hairline: #DDDBD1;
+  --sheet: #F6F5F0;
+
+  --accent-base: #3D6D5B;   /* the original jade */
+  --leaf: #7FA694;
+  --amber: #A5702F;
+
+  --sky: #EFEFE8;
+  --sky-top: #E9EAE1;
+  --sky-bottom: #F6F5EF;
+  --sun-disc: #E1E4D8;
+
+  --accent-on: #F6F9F7;      /* text sitting on a jade fill */
 }
